@@ -1,36 +1,26 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    lazy = false,
     build = ":TSUpdate",
-    opts = {
-      ensure_installed = {
-        "html",
-        "css",
-        "json",
-        "javascript",
-        "typescript",
-        "php",
-        "vue",
-        "tsx",
-        "query",
-        "go",
-        "c",
-        "java",
-        "python",
-        "lua",
-        "yaml",
-        "graphql",
-        "http",
-        "bash",
-        "dockerfile",
-        "gitignore",
-        "markdown",
-        "markdown_inline",
-        "vim",
-        "vimdoc",
-      },
-    },
+    opts = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, {
+          "cpp"
+          "css",
+          "gitignore",
+          "go",
+          "graphql",
+          "http",
+          "java",
+          "php",
+          "rust",
+          "scss",
+          "sql",
+          "svelte",
+          "vue",
+        })
+      end
+    end
   },
 
   -- Selection Incremental
