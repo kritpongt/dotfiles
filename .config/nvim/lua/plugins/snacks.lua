@@ -31,10 +31,8 @@ return {
       { "<c-_>", "", desc = "which_key_ignore" },
     },
     opts = function(_, opts)
-      opts.explorer = {
-        hidden = true,
-        ignored = true,
-      }
+      opts.picker.hidden = true
+      opts.picker.ignored = true
 
       local logo = [[
  ██████   █████                                ███                 
