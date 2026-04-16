@@ -8,7 +8,7 @@ $git_status
 $character\
 """
 
-palettes = "solarized"
+palette = "solarized"
 
 [character]
 success_symbol = "[>](fg: base0)"
