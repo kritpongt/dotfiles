@@ -33,4 +33,4 @@ eval "$(starship init zsh)"
 
 # -- Aliases
 # -- eza
-alias ls="eza --color=always --icons=always"
+alias ls="eza --icons=always"
