@@ -31,6 +31,7 @@ return {
 			{ "<c-_>", "", desc = "which_key_ignore" },
 		},
 		opts = function(_, opts)
+			opts.picker = opts.picker or {}
 			opts.picker.hidden = true
 			-- opts.picker.ignored = true
 
