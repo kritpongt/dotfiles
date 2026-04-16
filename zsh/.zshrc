@@ -23,7 +23,7 @@ bindkey -M viins '^N' down-line-or-beginning-search
 eval "$(fzf --zsh)"
 
 # -- starship
-# eval "$(starship init zsh)"
+eval "$(starship init zsh)"
 
 # -- zoxide
 # eval "$(zoxide init zsh)"
