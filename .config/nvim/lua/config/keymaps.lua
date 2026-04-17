@@ -38,10 +38,10 @@ vim.keymap.set("v", "<A-S-K>", "y'>pgv")
 vim.keymap.set("n", "<A-S-J>", "yyp")
 vim.keymap.set("v", "<A-S-J>", "yPgv")
 
--- Toggle comment "gc" (O-PENDING mode) **Note: Bug resolved with Comment.nvim**
--- vim.keymap.set("o", "c", function()
---   vim.cmd("normal gcc")
--- end, { noremap = true, desc = "Toggle comment" })
+-- Toggle comment "gc" (O-PENDING mode)
+vim.keymap.set("o", "c", function()
+  vim.cmd("normal gcc")
+end, { noremap = true, desc = "Toggle comment" })
 
 -- Wrapping tag inner/outer
 vim.keymap.set({ "n" }, "<M-i>", function()

@@ -3,8 +3,6 @@ return {
     "numToStr/Comment.nvim",
     dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
     keys = {
-      -- { "gc", mode = { "n", "v" } },
-      -- { "gcc", mode = "n" },
       { "gb", mode = "v" },
       { "<C-_>", "gb", mode = "v", remap = true, desc = "Comment blockwise (visual)" },
     },
