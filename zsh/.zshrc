@@ -1,4 +1,5 @@
 export ZSH="$HOME/.oh-my-zsh"
+export DOTFI_SCRIPT="$HOME/dotfiles/.config/scripts"
 export EDITOR=nvim
 export VISUAL=nvim
 
@@ -12,26 +13,26 @@ plugins=(
 
     zsh-syntax-highlighting
 )
-source $ZSH/oh-my-zsh.sh
+if [ -f "$ZSH/oh-my-zsh.sh" ]; then source "$ZSH/oh-my-zsh.sh"; fi
 
-# -- Vi Mode
+# -- vi mode
 set -o vi
-bindkey -M viins '^P' up-line-or-beginning-search
-bindkey -M viins '^N' down-line-or-beginning-search
 export KEYTIMEOUT=1
 
-# -- fzf-git
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--preview 'bat --color=always -n --line-range :500 {}'"
+# -- key binding
+bindkey -M viins '^P' up-line-or-beginning-search
+bindkey -M viins '^N' down-line-or-beginning-search
+
+# -- initial
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 eval "$(fzf --zsh)"
 
-# -- zoxide
-eval "$(zoxide init zsh)"
+# -- fzf-git
+if [ -f "$DOTFI_SCRIPT/fzf-git.sh" ]; then source "$DOTFI_SCRIPT/fzf-git.sh"; fi
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# -- starship
-eval "$(starship init zsh)"
-
-# -- Aliases
+# -- aliases
 # -- eza
 alias ls="eza --icons=always"
