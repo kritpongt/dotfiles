@@ -1,5 +1,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 export DOTFI_SCRIPT="$HOME/dotfiles/.config/scripts"
+export TMUX_CONF="$HOME/.config/tmux/tmux.conf"
 export EDITOR=nvim
 export VISUAL=nvim
 
@@ -41,3 +42,5 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls $realpath'
 zstyle ':fzf-tab:*' fzf-flags '--bind=ctrl-l:accept'
 
 # -- aliases
+# -- tmux
+alias tmux="tmux -f $TMUX_CONF"
