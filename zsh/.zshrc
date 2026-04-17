@@ -30,6 +30,7 @@ eval "$(fzf --zsh)"
 
 # -- fzf-git
 if [ -f "$DOTFI_SCRIPT/fzf-git.sh" ]; then source "$DOTFI_SCRIPT/fzf-git.sh"; fi
+export FZF_DEFAULT_OPTS="--bind 'ctrl-l:accept'"
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
