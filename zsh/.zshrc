@@ -1,4 +1,4 @@
-export ZSH="$HOME/.oh-my-zsh"
+export OMZSH="$HOME/.oh-my-zsh"
 export DOTFI_SCRIPT="$HOME/dotfiles/.config/scripts"
 export TMUX_CONF="$HOME/.config/tmux/tmux.conf"
 export EDITOR=nvim
@@ -14,7 +14,7 @@ plugins=(
     zsh-system-clipboard
     zsh-syntax-highlighting
 )
-if [ -f "$ZSH/oh-my-zsh.sh" ]; then source "$ZSH/oh-my-zsh.sh"; fi
+source "$OMZSH/oh-my-zsh.sh"
 
 # -- vi mode
 set -o vi
