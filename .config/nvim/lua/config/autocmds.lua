@@ -48,15 +48,23 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Close explorer(Snack.explorer) first when command :q
+-- vim.api.nvim_create_autocmd("QuitPre", {
+--   callback = function()
+--     for _, win in ipairs(vim.api.nvim_list_wins()) do
+--       local buf = vim.api.nvim_win_get_buf(win)
+--       local ft = vim.api.nvim_get_option_value("filetype", { buf = buf })
+--       -- print("Debug:" .. ft)
+--       if ft == "snacks_layout_box" then
+--         require("snacks").explorer()
+--       end
+--     end
+--   end,
+-- })
 vim.api.nvim_create_autocmd("QuitPre", {
   callback = function()
-    for _, win in ipairs(vim.api.nvim_list_wins()) do
-      local buf = vim.api.nvim_win_get_buf(win)
-      local ft = vim.api.nvim_get_option_value("filetype", { buf = buf })
-      -- print("Debug:" .. ft)
-      if ft == "snacks_layout_box" then
-        require("snacks").explorer()
-      end
+    local pickers = require("snacks").picker.get({ source = "explorer" })
+    for _, p in ipairs(pickers) do
+      p:close()
     end
   end,
 })

@@ -55,9 +55,9 @@ function copy
 end
 
 ## aliases
-alias ls='eza -al --color=always --group-directories-first --icons=always'
 alias la='eza -a --color=always --group-directories-first --icons=always'
 alias ll='eza -l --color=always --group-directories-first --icons=always'
+alias ls='eza -al --color=always --group-directories-first --icons=always'
 alias lt='eza -aT --color=always --group-directories-first --icons=always'
 
 ## sort installed pkgs according to size in MB

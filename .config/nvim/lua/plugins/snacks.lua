@@ -34,6 +34,10 @@ return {
 			opts.picker = opts.picker or {}
 			opts.picker.hidden = true
 			-- opts.picker.ignored = true
+			opts.picker.sources = opts.picker.sources or {}
+			opts.picker.sources.explorer = {
+				layout = { layout = { width = 0.20 } }
+			}
 
 			local logo = [[
  ██████   █████                                ███                 
