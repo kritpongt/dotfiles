@@ -1,5 +1,3 @@
-zoxide init fish | source
-
 function fish_greeting
 	if set -q KONSOLE_VERSION
 		fastfetch
@@ -7,6 +5,9 @@ function fish_greeting
 end
 
 fnm env --use-on-cd | source
+zoxide init fish | source
+
+fish_vi_key_bindings
 
 ## append common directories for executable files to $PATH
 fish_add_path ~/.local/bin ~/.cargo/bin ~/Applications/depot_tools
@@ -36,6 +37,7 @@ if [ "$fish_key_bindings" = fish_vi_key_bindings ];
 	bind -Minsert '$' __history_previous_command_arguments
 	bind -Minsert \cl forward-word
 	bind -Minsert ctrl-L clear-screen
+	bind -Minsert ctrl-backspace backward-kill-word
 else
 	bind ! __history_previous_command
 	bind '$' __history_previous_command_arguments
