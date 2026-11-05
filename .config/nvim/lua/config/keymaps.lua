@@ -3,7 +3,13 @@
 -- Add any additional keymaps here
 
 -- Copy/Paste use system clipboard
-vim.keymap.set("v", "<C-c>", '"+y', { noremap = true, silent = true, desc = "Copy" })
+-- vim.keymap.set("v", "<C-c>", '"+y', { noremap = true, silent = true, desc = "Copy" })
+vim.keymap.set("v", "<C-c>", function()
+  local saved_reg = vim.fn.getreg('"')
+  local saved_type = vim.fn.getregtype('"')
+  vim.cmd('noautocmd normal! "+y')
+  vim.fn.setreg('"', saved_reg, saved_type)
+end, { noremap = true, silent = true, desc = "Copy to clipboard without overwriting unnamed register" })
 vim.keymap.set("i", "<C-v>", "<C-r>+<Esc>", { noremap = true, silent = true, desc = "Paste" })
 
 -- Undo/Redo
