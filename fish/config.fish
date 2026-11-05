@@ -16,7 +16,7 @@ fish_add_path ~/.local/bin ~/.cargo/bin ~/Applications/depot_tools
 function __history_previous_command
 	switch (commandline -t)
 		case "!"
-    commandline -t $history[1]; commandline -f repaint
+			commandline -t $history[1]; commandline -f repaint
 		case "*"
 			commandline -i !
 	end
@@ -33,11 +33,13 @@ function __history_previous_command_arguments
 end
 
 if [ "$fish_key_bindings" = fish_vi_key_bindings ];
-	bind -Minsert ! __history_previous_command
-	bind -Minsert '$' __history_previous_command_arguments
-	bind -Minsert \cl forward-word
-	bind -Minsert ctrl-L clear-screen
-	bind -Minsert ctrl-backspace backward-kill-word
+	bind -M insert ! __history_previous_command
+	bind -M insert '$' __history_previous_command_arguments
+	bind -M insert \cl forward-word
+	bind -M insert ctrl-L clear-screen
+	bind -M insert ctrl-backspace backward-kill-word
+	bind -M insert \cp history-search-backward
+	bind -M insert \cn history-search-forward
 else
 	bind ! __history_previous_command
 	bind '$' __history_previous_command_arguments
