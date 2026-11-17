@@ -32,42 +32,43 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Focus buffer when in explorer(Snack.explorer)
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "snacks_picker_list",
-  callback = function(args)
-    local opts = { buffer = args.buf, remap = false, silent = true }
-    vim.keymap.set("n", "<C-PageUp>", function()
-      vim.cmd("wincmd p")
-      vim.cmd("BufferLineCyclePrev")
-    end, opts)
-    vim.keymap.set("n", "<C-PageDown>", function()
-      vim.cmd("wincmd p")
-      vim.cmd("BufferLineCyclePrev")
-    end, opts)
-  end,
-})
-
--- Close explorer(Snack.explorer) first when command :q
--- vim.api.nvim_create_autocmd("QuitPre", {
---   callback = function()
---     for _, win in ipairs(vim.api.nvim_list_wins()) do
---       local buf = vim.api.nvim_win_get_buf(win)
---       local ft = vim.api.nvim_get_option_value("filetype", { buf = buf })
---       -- print("Debug:" .. ft)
---       if ft == "snacks_layout_box" then
---         require("snacks").explorer()
---       end
---     end
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "snacks_picker_list",
+--   callback = function(args)
+--     local opts = { buffer = args.buf, remap = false, silent = true }
+--     vim.keymap.set("n", "<C-PageUp>", function()
+--       vim.cmd("wincmd p")
+--       vim.cmd("BufferLineCyclePrev")
+--     end, opts)
+--     vim.keymap.set("n", "<C-PageDown>", function()
+--       vim.cmd("wincmd p")
+--       vim.cmd("BufferLineCyclePrev")
+--     end, opts)
 --   end,
 -- })
-vim.api.nvim_create_autocmd("QuitPre", {
-  callback = function()
-    local pickers = require("snacks").picker.get({ source = "explorer" })
-    for _, p in ipairs(pickers) do
-      p:close()
-    end
-  end,
-})
+
+-- Close explorer(Snack.explorer) first when command :q
+-- vim.api.nvim_create_autocmd("CmdlineLeave", {
+--   group = vim.api.nvim_create_augroup("SnacksExplorerQuit", { clear = true }),
+--   callback = function()
+--     if vim.v.event.abort then
+--       return
+--     end
+--     if not vim.fn.getcmdline():match("^q[uit]*!?$") then
+--       return
+--     end
+--     local pickers = require("snacks").picker.get({ source = "explorer" })
+--     if #pickers == 0 then
+--       return
+--     end
+--     vim.v.event.abort = true
+--     vim.schedule(function()
+--       for _, p in ipairs(pickers) do
+--         p:close()
+--       end
+--     end)
+--   end,
+-- })
 
 -- Disable scroll animation(Snacks.scroll) in visual mode
 local group_snacks_scroll = vim.api.nvim_create_augroup("SnacksScrollAnimations", { clear = true })
@@ -93,5 +94,13 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   pattern = "[vV\x16]*:[^vV\x16]*",
   callback = function()
     snacks_scroll(true)
+  end,
+})
+
+-- Format
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "typescript" },
+  callback = function()
+    vim.b.autoformat = true
   end,
 })

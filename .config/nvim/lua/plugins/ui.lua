@@ -55,13 +55,57 @@ return {
         component_separators = "\u{e621}",
       }
       opts.sections.lualine_a = {
-        { "mode", icon = "\u{f121}\u{2009}" },
+        { "mode", icon = "\u{f0fc8}" },
       }
-      table.insert(opts.sections.lualine_x, 1, {
-        "encoding",
-        padding = { left = 1, right = 1 },
-      })
-      opts.sections.lualine_z = {}
+
+			opts.sections.lualine_c = vim.tbl_filter(function(comp)
+				return not (type(comp) == "table" and comp[1] == "filetype")
+			end, opts.sections.lualine_c)
+
+			-- opts.sections.lualine_x = vim.list_extend({
+			-- 	{ "filetype", icon_only = false, padding = { left = 1, right = 1 } },
+			-- 	{ "encoding", padding = { left = 1, right = 1 } },
+			-- }, opts.sections.lualine_x)
+			local x = opts.sections.lualine_x
+			for i, comp in ipairs(x) do
+				if type(comp) == "table" and comp[1] == "diff" then
+					table.remove(x, i)
+					table.insert(x, 1, comp)
+					break
+				end
+			end
+			table.insert(x, 2, { "filetype", icon_only = false, padding = { left = 1, right = 1 },
+				fmt = function(ft)
+					local alias = {
+						javascript = "js",
+						typescript = "ts",
+						javascriptreact = "jsx",
+						typescriptreact = "tsx",
+					}
+					return alias[ft] or ft
+				end
+			})
+			table.insert(x, 3, { "encoding", padding = { left = 1, right = 1 } })
+
+			local lazy_status = require("lazy.status")
+			opts.sections.lualine_x = vim.tbl_filter(function(comp)
+				return not (type(comp) == "table" and comp[1] == lazy_status.updates)
+			end, opts.sections.lualine_x)
+
+			opts.sections.lualine_z = {
+        {
+          -- lazy_status.updates,
+          -- cond = lazy_status.has_updates,
+					function()
+						local updates = lazy_status.updates()
+						local icon = require("lazy.core.config").options.ui.icons.plugin
+						return updates or vim.trim(icon)
+					end,
+          color = function()
+            return { bg = Snacks.util.color("Special") }
+          end,
+        },
+      }
     end,
   },
   {

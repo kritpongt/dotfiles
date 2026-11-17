@@ -80,4 +80,36 @@ return {
       end,
     },
   },
+	{
+		"stevearc/conform.nvim",
+		opts = {
+			formatters = {
+				-- stylua = {
+				-- 	prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
+				-- },
+			},
+		},
+	},
+	{
+		'abecodes/tabout.nvim',
+		lazy = false,
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		opts = {
+			tabkey = "<Tab>",
+			backwards_tabkey = "<S-Tab>",
+			completion = false,
+			act_as_tab = true,
+			act_as_shift_tab = false,
+			ignore_beginning = true,
+			exclude = {},
+			tabouts = {
+				{ open = "'", close = "'" },
+				{ open = '"', close = '"' },
+				{ open = '`', close = '`' },
+				{ open = '(', close = ')' },
+				{ open = '[', close = ']' },
+				{ open = '{', close = '}' }
+			}
+		}
+	}
 }

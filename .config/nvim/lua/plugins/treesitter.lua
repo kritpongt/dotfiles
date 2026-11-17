@@ -17,6 +17,7 @@ return {
           "scss",
           "sql",
           "svelte",
+					"twig",
           "vue",
         })
       end
