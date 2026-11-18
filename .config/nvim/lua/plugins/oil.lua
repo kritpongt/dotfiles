@@ -8,16 +8,16 @@ return {
 				function()
 					require("oil").toggle_float(LazyVim.root())
 				end,
+				desc = "Toggle oil root"
+			},
+      {
+				"<A-e>",
+				function()
+					require("oil").toggle_float()
+				end,
 				desc = "Toggle oil"
 			},
       { "<leader>e", "<cmd>Oil<cr>", desc = "Oil parent directory" },
-      -- {
-			-- 	"<leader>e",
-			-- 	function()
-			-- 		require("oil").toggle_float(LazyVim.root())
-			-- 	end,
-			-- 	desc = "Oil root directory"
-			-- },
     },
     opts = {
       default_file_explorer = true,
@@ -32,7 +32,6 @@ return {
         ["<C-h>"] = { "actions.parent", mode = "n" },
         ["<C-l>"] = { "actions.select", mode = "n" },
         ["<A-p>"] = { "actions.preview", mode = "n" },
-        ["<Esc>"] = { "actions.refresh", mode = "n" },
       },
       float = { padding = 2, max_width = 0.8, max_height = 0.8, border = "rounded" },
     },
