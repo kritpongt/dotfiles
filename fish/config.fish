@@ -36,14 +36,14 @@ if [ "$fish_key_bindings" = fish_vi_key_bindings ];
 	bind -M insert ! __history_previous_command
 	bind -M insert '$' __history_previous_command_arguments
 	bind -M insert \cl forward-word
-	bind -M insert ctrl-L clear-screen
+	bind -M insert ctrl-shift-l clear-screen
 	bind -M insert \cp history-search-backward
 	bind -M insert \cn history-search-forward
 else
 	bind ! __history_previous_command
 	bind '$' __history_previous_command_arguments
 	bind \cl forward-word
-	bind ctrl-L clear-screen
+	bind ctrl-shift-l clear-screen
 end
 
 function history

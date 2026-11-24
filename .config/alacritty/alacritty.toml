@@ -88,4 +88,5 @@ bindings = [
 	{ key = "Key0", mods = "Control", action = "ResetFontSize" },
 	{ key = "M", mods = "Control|Shift", action = "ToggleMaximized" },
 	{ key = "Enter", mods = "Shift", mode = "~Vi|~search", chars = "\u001b[13;2u" },
+	{ key = "L", mods = "Control|Shift", chars = "\u001b[108;6u" },
 ]
